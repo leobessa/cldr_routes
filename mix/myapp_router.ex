@@ -48,7 +48,7 @@ defmodule MyApp.Router do
   end
 
   localize "fr" do
-    live "/columns/:page", PageController
+    live "/columns/:page", PageController, as: :col
   end
 
   # Live routes
