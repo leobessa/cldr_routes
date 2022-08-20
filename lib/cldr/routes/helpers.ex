@@ -381,7 +381,7 @@ defmodule Cldr.Route.LocalizedHelpers do
       else
         quote generated: true, location: :keep  do
           def unquote(:"#{helper}_links")(conn_or_endpoint, plug_opts, unquote_splicing(vars)) do
-            for locale <- unquote(Macro.escape(locales)) do
+            for locale <- unquote(Macro.escape(locales)), not is_nil(locale) do
               Cldr.with_locale locale, fn ->
                 {
                   Map.fetch!(locale, :requested_locale_name),
