@@ -405,7 +405,7 @@ defmodule Cldr.Route.LocalizedHelpers do
   def helper_by_locale(routes) do
     routes
     |> Enum.group_by(fn {route, _exprs} ->
-      if localized_route?(route), do: strip_locale(route.helper), else: route.helper
+      if localized_route?(route), do: strip_locale(route.helper, Map.get(route.private, :cldr_locale)), else: route.helper
     end)
     |> Enum.map(fn {helper, routes} ->
       {helper, routes_by_locale(routes)}
